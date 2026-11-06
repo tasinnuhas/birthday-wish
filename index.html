@@ -1,0 +1,188 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday ❤️</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  color: white;
+  background: #080817;
+  overflow-x: hidden;
+  padding: 20px;
+}
+
+.card {
+  width: 100%;
+  max-width: 600px;
+  padding: 30px 20px;
+  text-align: center;
+  border: 2px solid #ff00bb;
+  border-radius: 20px;
+  background: linear-gradient(145deg,#260b38,#071c36);
+  box-shadow: 0 0 15px #ff00bb,
+              0 0 35px #00eaff;
+  animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+  to {
+    box-shadow: 0 0 30px #ff00bb,
+                0 0 50px #00eaff;
+  }
+}
+
+h1 {
+  color: #ff55d4;
+  font-size: 38px;
+  text-shadow: 0 0 15px #ff00bb;
+}
+
+.name {
+  color: #ffffff;
+  text-shadow: 0 0 15px #00eaff;
+}
+
+.cake {
+  font-size: 85px;
+  margin: 20px;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  50% { transform: translateY(-12px); }
+}
+
+p {
+  line-height: 1.8;
+}
+
+button {
+  padding: 14px 25px;
+  border: none;
+  border-radius: 30px;
+  background: linear-gradient(90deg,#ff55d4,#00eaff);
+  color: #111;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+.letter {
+  display: none;
+  margin-top: 25px;
+  padding: 20px;
+  background: #ffffff15;
+  border: 1px solid #ff55d4;
+  border-radius: 15px;
+  line-height: 2;
+  white-space: pre-wrap;
+}
+
+.letter.show {
+  display: block;
+}
+
+.heart {
+  position: fixed;
+  bottom: -40px;
+  animation: float 7s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes float {
+  to {
+    transform: translateY(-110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+  <div style="font-size:35px;">🎈 🎉 🎈</div>
+
+  <p>Today is your special day!</p>
+
+  <h1>
+    Happy Birthday
+    <br>
+    <span class="name" id="person">Someone Special</span>
+    ❤️
+  </h1>
+
+  <div class="cake">🎂</div>
+
+  <p>
+    Wishing you a beautiful year ahead!
+    <br>
+    May all your dreams come true.
+  </p>
+
+  <button onclick="openLetter()">
+    Open Your Letter 💌
+  </button>
+
+  <div class="letter" id="letter"></div>
+
+  <p>
+    Made with ❤️ by
+    <span id="sender">Someone</span>
+  </p>
+
+</div>
+
+<script>
+const params = new URLSearchParams(location.search);
+
+const name = params.get("name") || "Someone Special";
+const sender = params.get("from") || "Someone";
+
+const message = params.get("message") ||
+`Happy Birthday! 🎂
+
+May your life be filled with happiness.
+May all your dreams come true.
+
+Stay happy and blessed always! ❤️`;
+
+document.getElementById("person").textContent = name;
+document.getElementById("sender").textContent = sender;
+document.getElementById("letter").textContent = message;
+
+function openLetter() {
+  document.getElementById("letter").classList.toggle("show");
+}
+
+const emojis = ["💖","💕","✨","❤️","🎈"];
+
+for (let i = 0; i < 20; i++) {
+  const heart = document.createElement("span");
+
+  heart.className = "heart";
+  heart.textContent = emojis[i % emojis.length];
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDelay = Math.random() * 7 + "s";
+
+  document.body.appendChild(heart);
+}
+</script>
+
+</body>
+</html>
